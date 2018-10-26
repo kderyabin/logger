@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Standard" namespace="Log\CS\Standard">
+    <!--
+    Exclude some sniffs when fixing files, but allow them
+    to still report errors while checking files.
+    -->
+    <rule ref="PSR2"/>
+</ruleset>

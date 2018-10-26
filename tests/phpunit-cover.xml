@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         bootstrap="bootstrap.php"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertWarningsToExceptions="true"
+         convertNoticesToExceptions="true"
+         processIsolation="false"
+         syntaxCheck="false"
+         printerClass="rpkamp\FancyTestdoxPrinter">
+    <testsuites>
+        <testsuite>
+            <directory suffix="Test.php">./lib/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+      <whitelist>
+        <directory suffix=".php">../src/</directory>
+      </whitelist>
+      <blacklist>
+        <directory>.</directory>
+      </blacklist>
+    </filter>
+    <logging>
+        <log type="coverage-html"
+             target="../output/"
+             lowUpperBound="70"
+             highLowerBound="90"/>
+    </logging>
+</phpunit>
