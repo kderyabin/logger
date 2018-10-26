@@ -1,9 +1,9 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: Konstantin
- * Date: 20/10/2018
- * Time: 20:01
+ * Copyright (c) 2018 Konstantin Deryabin
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Kod\Tests;
