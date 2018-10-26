@@ -11,7 +11,7 @@ namespace Kod\Tests;
 use Kod\Channel;
 use Kod\Formatter\JsonFormatter;
 use Kod\Handlers\OutputHandler;
-use Kod\Handlers\TestHandler;
+use Kod\Tests\Mocks\TestHandler;
 use Kod\Logger;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;

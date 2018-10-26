@@ -23,7 +23,8 @@ class TextFormatter extends AbstractFormatter
 
     public function format($data)
     {
-        $separator = $this->getOption('separator', $this->getDefault('separator'));;
+        $separator = $this->getOption('separator', $this->getDefault('separator'));
+        ;
         $content = [];
         foreach ($data as $key => $value) {
             $content[] = sprintf("[%s]: %s", $key, $this->stringify($value));

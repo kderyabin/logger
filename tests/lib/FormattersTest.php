@@ -25,12 +25,10 @@ class FormattersTest extends TestCase
                     ],
                     'formatter' => [
                         'instance' => TextFormatter::class,
-                        'options' => [
-                            'allow_line_breaks' => false,
-                            'separator' => '|',
-                            'start_of_log' => '',
-                            'end_of_log' => $endOfLog ,
-                        ]
+                        'allow_line_breaks' => false,
+                        'separator' => '|',
+                        'start_of_log' => '',
+                        'end_of_log' => $endOfLog,
                     ]
                 ]
             ]
@@ -51,7 +49,7 @@ class FormattersTest extends TestCase
 
     public function testLinePatternFormatter()
     {
-        $endOfLog = PHP_EOL. '***'. PHP_EOL ;
+        $endOfLog = PHP_EOL . '***' . PHP_EOL;
         $logger = new Logger([
             'channels' => [
                 [
@@ -60,9 +58,7 @@ class FormattersTest extends TestCase
                     ],
                     'formatter' => [
                         'instance' => LinePatternFormatter::class,
-                        'options' => [
-                            'end_of_log' => $endOfLog,
-                        ]
+                        'end_of_log' => $endOfLog,
                     ]
                 ]
             ]

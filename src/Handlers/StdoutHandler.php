@@ -6,7 +6,6 @@
 
 namespace Kod\Handlers;
 
-
 /**
  * OutputHandler
  */

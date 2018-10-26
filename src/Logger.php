@@ -62,7 +62,7 @@ class Logger extends AbstractLogger
      */
     public function log($level, $message, array $context = array())
     {
-        if(!$this->canLog($this->levelPriority[$level])){
+        if (!$this->canLog($this->levelPriority[$level])) {
             return;
         }
         $levelCode = $this->levelCode[$level];

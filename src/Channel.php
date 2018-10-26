@@ -68,6 +68,4 @@ class Channel
     {
         return $this->formatter;
     }
-
-
 }

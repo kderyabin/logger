@@ -14,7 +14,7 @@ use Kod\Formatter\AbstractFormatter;
 use Kod\Formatter\JsonFormatter;
 use Kod\Handlers\AbstractHandler;
 use Kod\Handlers\StreamHandler;
-use Kod\Handlers\TestHandler;
+use Kod\Tests\Mocks\TestHandler;
 use Kod\LoggerFactory;
 use Kod\Message;
 use Kod\Tests\Mocks\MonologMessage;

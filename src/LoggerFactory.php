@@ -85,7 +85,7 @@ class LoggerFactory
      */
     public static function getHandler(array $config): AbstractHandler
     {
-        if( !empty($config['instance'])){
+        if (!empty($config['instance'])) {
             $handler = $config['instance'];
             unset($config['instance']);
         } else {
@@ -104,7 +104,7 @@ class LoggerFactory
          * @var AbstractHandler $handler
          */
 
-        if( !empty($config['instance'])){
+        if (!empty($config['instance'])) {
             $formatter = $config['instance'];
             unset($config['instance']);
         } else {
@@ -135,14 +135,12 @@ class LoggerFactory
     public static function getMinPriority(array $priorities, $config = [])
     {
         if (!empty($config['levelPriorityMin'])) {
-
             if (!isset($priorities[$config['levelPriorityMin']])) {
                 throw new \InvalidArgumentException(
                     sprintf('levelPriorityMin "%s" is not declared in level priorities', $config['levelPriorityMin'])
                 );
             }
             return $priorities[$config['levelPriorityMin']];
-
         }
         return null;
     }

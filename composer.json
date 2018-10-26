@@ -4,10 +4,10 @@
     "description": "PHP Logger",
     "version" : "0.1.0",
     "require": {
-        "psr/log": "^1.0.0"
+        "psr/log": "~1.0.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "2.9.1",
+        "squizlabs/php_codesniffer": "~2.9.1",
         "phpunit/phpunit": "~6.1.0",
         "rpkamp/fancy-testdox-printer": "~0.2.5"
     },
@@ -31,10 +31,10 @@
             "@tu"
         ],
         "cs": [
-            "env ./bin/phpcs --colors --encoding=utf-8 --standard=ruleset.xml --extensions=php --runtime-set ignore_warnings_on_exit 1  ./src"
+            "env ./bin/phpcs --colors --encoding=utf-8 --standard=ruleset.xml --runtime-set ignore_warnings_on_exit 1  ./src"
         ],
         "cs-fix" : [
-            "env ./bin/phpcbf --encoding=utf-8 --standard=ruleset.xml --extensions=php -n --runtime-set ignore_warnings_on_exit 1 --ignore=src/lib/vendor/ src"
+            "env ./bin/phpcbf --encoding=utf-8 --standard=ruleset.xml  -n --runtime-set ignore_warnings_on_exit 1 --ignore=src/lib/vendor/ src"
         ],
         "tu": [
             "env ./bin/phpunit -c tests/phpunit.xml"
