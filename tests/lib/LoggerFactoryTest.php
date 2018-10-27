@@ -110,9 +110,8 @@ class LoggerFactoryTest extends TestCase
         } catch (\Throwable $error) {
             $this->assertTrue($error instanceof \InvalidArgumentException);
         }
-
-
     }
+
     public function testDefaultChannelsFactory()
     {
         $channels = LoggerFactory::getChannels();
@@ -124,6 +123,7 @@ class LoggerFactoryTest extends TestCase
         $this->assertInstanceOf(AbstractHandler::class, $channel->getHandler());
         $this->assertInstanceOf(AbstractFormatter::class, $channel->getFormatter());
     }
+
 
     public function testChannelsFactory()
     {

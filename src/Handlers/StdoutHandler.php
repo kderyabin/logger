@@ -9,7 +9,8 @@
 namespace Kod\Handlers;
 
 /**
- * OutputHandler
+ * Class StdoutHandler
+ * @package Kod\Handlers
  */
 class StdoutHandler extends StreamHandler
 {

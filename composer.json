@@ -1,46 +1,55 @@
 {
-    "name": "psr-logger",
-    "type": "library",
-    "description": "PHP Logger",
-    "version" : "0.1.0",
-    "require": {
-        "psr/log": "~1.0.0"
-    },
-    "require-dev": {
-        "squizlabs/php_codesniffer": "~2.9.1",
-        "phpunit/phpunit": "~6.1.0",
-        "rpkamp/fancy-testdox-printer": "~0.2.5"
-    },
-    "config": {
-        "bin-dir": "bin",
-        "vendor-dir": "vendor"
-    },
-    "autoload": {
-        "psr-4": {
-            "Kod\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Kod\\Tests\\": "tests/lib"
-        }
-    },
-    "scripts": {
-        "test": [
-            "@cs",
-            "@tu"
-        ],
-        "cs": [
-            "env ./bin/phpcs --colors --encoding=utf-8 --standard=ruleset.xml --runtime-set ignore_warnings_on_exit 1  ./src"
-        ],
-        "cs-fix" : [
-            "env ./bin/phpcbf --encoding=utf-8 --standard=ruleset.xml  -n --runtime-set ignore_warnings_on_exit 1 --ignore=src/lib/vendor/ src"
-        ],
-        "tu": [
-            "env ./bin/phpunit -c tests/phpunit.xml"
-        ],
-        "cover-tu": [
-            "env ./bin/phpunit -c tests/phpunit-cover.xml"
-        ]
+  "name": "kod/logger",
+  "description": "Psr 3 logger implementation",
+  "type": "library",
+  "license": "MIT",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Konstantin Deryabin",
+      "email": "konst93@hotmail.com",
+      "role": "Developer"
     }
+  ],
+  "keywords": ["logger", "log", "logging", "psr-3"],
+  "require": {
+    "php": "^7.1",
+    "psr/log": "~1.0.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "~3.3.0",
+    "phpunit/phpunit": "~7.4.0"
+  },
+  "config": {
+    "bin-dir": "bin",
+    "vendor-dir": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kod\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Kod\\Tests\\": "tests/lib"
+    }
+  },
+  "scripts": {
+    "test": [
+      "@cs",
+      "@tu"
+    ],
+    "cs": [
+      "env ./bin/phpcs --colors --encoding=utf-8 --standard=ruleset.xml --runtime-set ignore_warnings_on_exit 1  ./src"
+    ],
+    "cs-fix": [
+      "env ./bin/phpcbf --encoding=utf-8 --standard=ruleset.xml  -n --runtime-set ignore_warnings_on_exit 1 --ignore=src/lib/vendor/ src"
+    ],
+    "tu": [
+      "env ./bin/phpunit --testdox -v -c tests/phpunit.xml"
+    ],
+    "tu-cover": [
+      "env ./bin/phpunit --testdox -v -c tests/phpunit-cover.xml"
+    ]
+  }
 }

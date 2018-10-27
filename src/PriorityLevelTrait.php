@@ -8,6 +8,10 @@
 
 namespace Kod;
 
+/**
+ * Trait PriorityLevelTrait
+ * @package Kod
+ */
 trait PriorityLevelTrait
 {
     /**
@@ -23,7 +27,7 @@ trait PriorityLevelTrait
 
     /**
      * @param int $priority
-     * @return bool true if passed in parameter log level can be logged otherwise false
+     * @return bool
      */
     public function canLog(int $priority)
     {

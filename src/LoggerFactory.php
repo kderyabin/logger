@@ -12,6 +12,7 @@ use Kod\Formatter\AbstractFormatter;
 use Kod\Formatter\JsonFormatter;
 use Kod\Handlers\AbstractHandler;
 use Kod\Handlers\StreamHandler;
+use Psr\Log\LogLevel;
 
 /**
  * Class LoggerFactory
@@ -20,13 +21,16 @@ use Kod\Handlers\StreamHandler;
 class LoggerFactory
 {
     /**
-     * @param array $config
+     * Initializes a Message instance from the logger configuration.
+     * Message configuration must be set in an array with the key "message".
+     *
+     * @param array $config     Logger configuration
      * @return Message
      */
-    public static function getMessage(array $config): Message
+    public static function getMessage(array $config = []): Message
     {
         $message = Message::class;
-        $msgConf = !empty($config['message']) ? $config['message'] : [];
+        $msgConf = $config['message'] ?? [];
         if (!empty($config['message']['instance'])) {
             $message = $config['message']['instance'];
             unset($config['message']['instance']);
@@ -37,15 +41,19 @@ class LoggerFactory
     }
 
     /**
-     * @param array $config
-     * @return array|\ArrayAccess
+     * Initializes an array of Channel's instances from the logger configuration.
+     * Channels settings are declared with the key "chanells".
+     * @see static::getChannel for Channel settings.
+     *
+     * @param array|\ArrayAccess $config    Logger configuration
+     * @return Channel[]
      * @throws \InvalidArgumentException
      */
-    public static function getChannels(array $config = []): array
+    public static function getChannels($config = []): array
     {
         $channels = [];
         if (empty($config['channels'])) {
-            $channels[] = static::getChannel([]);
+            $channels[] = static::getChannel();
             return $channels;
         }
 
@@ -57,33 +65,31 @@ class LoggerFactory
     }
 
     /**
-     * @param array $config
+     * Initializes a Channel instance.
+     *
+     * @param array $config     Channel settings
      * @return Channel
      * @throws \InvalidArgumentException
      */
     protected static function getChannel(array $config = []): Channel
     {
-        if (!empty($config['instance'])) {
-            $channel = new $config['instance'];
-            unset($config['instance']);
-        } else {
-            $channel = new Channel();
-        }
-        /*
-         * @var Channel $channel
-         */
-        $channel->setHandler(static::getHandler(empty($config['handler']) ? [] : $config['handler']));
-        $channel->setFormatter(static::getFormatter(empty($config['formatter']) ? [] : $config['formatter']));
-
+        $channel = new Channel();
+        $channel->setHandler(static::getHandler($config['handler'] ?? []));
+        $channel->setFormatter(static::getFormatter($config['formatter'] ?? []));
 
         return $channel;
     }
 
     /**
-     * @param array $config
+     * Initializes a handler instance.
+     * If the configuration is empty a default handler is returned.
+     * All settings except 'instance' are passed to the handler constructor.
+     * If declared, an 'instance' value must be a fully qualified class name.
+     *
+     * @param array $config     Handler settings
      * @return AbstractHandler
      */
-    public static function getHandler(array $config): AbstractHandler
+    public static function getHandler(array $config = []): AbstractHandler
     {
         if (!empty($config['instance'])) {
             $handler = $config['instance'];
@@ -95,15 +101,16 @@ class LoggerFactory
     }
 
     /**
-     * @param array $config
+     * Initializes a formatter instance.
+     * If the configuration is empty a default formatter is returned.
+     * All settings except 'instance' are passed to the formatter constructor.
+     * If declared, an 'instance' value must be a fully qualified class name.
+     *
+     * @param array $config     Formatter settings
      * @return AbstractFormatter
      */
-    public static function getFormatter(array $config): AbstractFormatter
+    public static function getFormatter(array $config = []): AbstractFormatter
     {
-        /**
-         * @var AbstractHandler $handler
-         */
-
         if (!empty($config['instance'])) {
             $formatter = $config['instance'];
             unset($config['instance']);
@@ -115,11 +122,11 @@ class LoggerFactory
     }
 
     /**
-     * @param array $config
-     * @param array $default
+     * @param array|\ArrayAccess $config        Logger configuration
+     * @param array $default                    Default mapping
      * @return array
      */
-    public static function getLevelCodeMapping(array $config, array $default): array
+    public static function getLevelCodeMapping($config, array $default): array
     {
         if (!empty($config['levelCode'])) {
             return $config['levelCode'];
@@ -128,8 +135,14 @@ class LoggerFactory
     }
 
     /**
-     * @param array $priorities
-     * @param array|\ArrayAccess $config
+     * Initializes a minimal log level priority.
+     * Converts a named level to integer value.
+     * This value must be declared with the key 'levelPriorityMin' and must be one of LogLevel constants.
+     * @see LogLevel
+     * @example 'levelPriorityMin' => 'info'
+     *
+     * @param array $priorities             Array containing a log level with its integer value
+     * @param array|\ArrayAccess $config    Logger configuration
      * @return int|null
      */
     public static function getMinPriority(array $priorities, $config = [])
@@ -146,8 +159,14 @@ class LoggerFactory
     }
 
     /**
-     * @param array $priorities
-     * @param array|\ArrayAccess $config
+     * Initializes a maximum log level priority.
+     * Converts a named level to integer value.
+     * This value must be declared with the key 'levelPriorityMax' and must be one of LogLevel constants.
+     * @see LogLevel
+     * @example 'levelPriorityMax' => 'notice'
+     *
+     * @param array $priorities             Array containing a log level with its integer value
+     * @param array|\ArrayAccess $config    Logger configuration
      * @return int|null
      */
     public static function getMaxPriority(array $priorities, $config = [])

@@ -8,11 +8,11 @@
 
 namespace Kod\Handlers;
 
-use Kod\PriorityLevelTrait;
 use Kod\OptionsTrait;
 
 /**
- * Formatters
+ * Class AbstractHandler
+ * @package Kod\Handlers
  */
 abstract class AbstractHandler
 {
@@ -28,6 +28,8 @@ abstract class AbstractHandler
     }
 
     /**
+     * Process a log message.
+     *
      * @param string $log
      * @return bool
      */

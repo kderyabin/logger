@@ -9,18 +9,19 @@
 namespace Kod\Utils;
 
 /**
- * Date
+ * Class Date
+ * @package Kod\Utils
  */
 class Date
 {
     /**
-     * Returns current date time.
+     * Returns current date time in desired format.
+     *
      * @param string $format
      * @return string
      */
-    public static function getNow($format = 'Y-m-d\TH:i:s.v\Z')
+    public static function getNow($format = DATE_RFC3339_EXTENDED)
     {
-        $now = number_format(microtime(true), 3, '.', '');
-        return (\DateTime::createFromFormat('U.u', $now))->format($format);
+        return (\DateTime::createFromFormat('U.u', microtime(true)))->format($format);
     }
 }

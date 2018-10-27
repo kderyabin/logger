@@ -15,13 +15,18 @@ namespace Kod\Formatter;
 class LinePatternFormatter extends TextFormatter
 {
     protected $default = [
+        // Formatting pattern.
         'format' => '%datetime% %level%(%level_code%): %message%',
         'end_of_log' => PHP_EOL,
     ];
 
-    public function format($data)
+    /**
+     * @param array $data
+     * @return mixed|string
+     */
+    public function format(array $data)
     {
-        $result = $this->getOption('format', $this->getDefault('format'));
+        $result = $this->getOptionOrDefault('format');
         foreach ($data as $key => $value) {
             if (false === strpos($result, '%' . $key . '%')) {
                 continue;

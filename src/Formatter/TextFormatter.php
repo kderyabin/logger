@@ -10,7 +10,7 @@ namespace Kod\Formatter;
 
 /**
  * Class TextFormatter
- * @package Kod\AbstractFormatter
+ * @package Kod\Formatter
  */
 class TextFormatter extends AbstractFormatter
 {
@@ -21,30 +21,35 @@ class TextFormatter extends AbstractFormatter
         // appended before the log
         'start_of_log' => PHP_EOL . '---------------------' . PHP_EOL,
         // appended after the log
-        'end_of_log' => PHP_EOL .'---------------------' . PHP_EOL,
+        'end_of_log' => PHP_EOL . '---------------------' . PHP_EOL,
     ];
 
-    public function format($data)
+    /**
+     * @param array $data
+     * @return string
+     */
+    public function format(array $data)
     {
-        $separator = $this->getOption('separator', $this->getDefault('separator'));
-        ;
+        $separator = $this->getOptionOrDefault('separator');
         $content = [];
         foreach ($data as $key => $value) {
             $content[] = sprintf("[%s]: %s", $key, $this->stringify($value));
         }
         $result = implode($separator, $content);
-        if (!$this->getOption('allow_line_breaks', $this->getDefault('allow_line_breaks'))) {
+        if (!$this->getOptionOrDefault('allow_line_breaks')) {
             $result = $this->removeEndLines($result);
         }
         $result =
-            $this->getOption('start_of_log', $this->getDefault('start_of_log'))
+            $this->getOptionOrDefault('start_of_log')
             . $result
-            . $this->getOption('end_of_log', $this->getDefault('end_of_log'));
+            . $this->getOptionOrDefault('end_of_log');
 
         return $result;
     }
 
     /**
+     * Converts a value into a string.
+     *
      * @param mixed $value
      * @return string
      */

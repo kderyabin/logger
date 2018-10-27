@@ -12,28 +12,29 @@ use Kod\Utils\Date;
 
 /**
  * Class Message
- * @package Log\dataFormat
+ * @package Kod
  */
 class Message
 {
     /**
-     * Preset for data to log.
-     * fields with NULL values are not logged
+     * Basic data field.
+     * Can be extended in the constructor.
+     *
      * @var array
      */
     protected $fields = [
         'message' => '',
         'level' => '',
-        'level_code' => '',
+        'level_code' => 0,
         'datetime' => '',
     ];
 
     /**
-     * Date/Datetime/Time fields with corresponding formats
+     * Date fields with corresponding formats
      * @var array
      */
     protected $dates = [
-        'datetime' => 'Y-m-d\TH:i:s.v\Z',
+        'datetime' => DATE_RFC3339_EXTENDED,
     ];
 
     /**

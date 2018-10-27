@@ -11,6 +11,10 @@ namespace Kod;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 
+/**
+ * Class Logger
+ * @package Kod
+ */
 class Logger extends AbstractLogger
 {
     use PriorityLevelTrait;
@@ -24,7 +28,7 @@ class Logger extends AbstractLogger
     protected $channels = [];
 
     /**
-     * Log level to log code mapping
+     * Log level to level code mapping
      */
     protected $levelCode = [
         LogLevel::EMERGENCY => LOG_EMERG,
@@ -37,7 +41,8 @@ class Logger extends AbstractLogger
         LogLevel::DEBUG => LOG_DEBUG,
     ];
     /**
-     * Log level to priority mapping
+     * Log level to log priority mapping.
+     * Used internally.
      */
     protected $levelPriority = [
         LogLevel::EMERGENCY => 7,

@@ -12,7 +12,8 @@ use Kod\Formatter\AbstractFormatter;
 use Kod\Handlers\AbstractHandler;
 
 /**
- * Channel
+ * Class Channel
+ * @package Kod
  */
 class Channel
 {
@@ -26,6 +27,7 @@ class Channel
     protected $formatter;
 
     /**
+     * Delivers a log data to the destination (handler)
      * @param array $data
      * @return bool
      */

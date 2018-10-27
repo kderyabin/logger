@@ -4,15 +4,8 @@
 
 #Project
 composer.lock
-setup.lock
-docs
-output
-src/lib/vendor
-src/var/tmp
-tests/coverage
-tests/var
-bin/php*
-bin/jane*
+coverage
+bin/*
 nbproject
 .idea
 vendor

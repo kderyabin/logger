@@ -8,6 +8,10 @@
 
 namespace Kod;
 
+/**
+ * Trait OptionsTrait
+ * @package Kod
+ */
 trait OptionsTrait
 {
     /**
@@ -31,10 +35,13 @@ trait OptionsTrait
             $this->options = array_merge($this->options, $options);
         }
     }
+
     /**
-     * @param $name
-     * @param null $default
-     * @return null
+     * Get an option value by name or return some arbitrary value.
+     *
+     * @param string $name
+     * @param mixed $default
+     * @return mixed
      */
     public function getOption($name, $default = null)
     {
@@ -42,7 +49,7 @@ trait OptionsTrait
     }
 
     /**
-     * Get default option.
+     * Get a default option value by name.
      *
      * @param string $name
      * @return mixed
@@ -50,5 +57,16 @@ trait OptionsTrait
     public function getDefault($name)
     {
         return $this->default[$name];
+    }
+
+    /**
+     * Get an option value by name or a default option with the same name.
+     *
+     * @param $name
+     * @return mixed
+     */
+    public function getOptionOrDefault($name)
+    {
+        return isset($this->options[$name]) ? $this->options[$name] : $this->getDefault($name);
     }
 }

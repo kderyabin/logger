@@ -11,7 +11,8 @@ namespace Kod\Handlers;
 use Kod\OptionsTrait;
 
 /**
- * StreamHandler
+ * Class StreamHandler
+ * @package Kod\Handlers
  */
 class StreamHandler extends AbstractHandler
 {
@@ -19,7 +20,8 @@ class StreamHandler extends AbstractHandler
         'path' => 'php://stderr'
     ];
     /**
-     * AbstractHandler fir the
+     * Resource where logs will be written.
+     *
      * @var resource
      */
     protected $resource;
@@ -30,6 +32,7 @@ class StreamHandler extends AbstractHandler
     }
 
     /**
+     * Open a log destination.
      * @throws \Exception
      */
     protected function open()
@@ -44,7 +47,7 @@ class StreamHandler extends AbstractHandler
     }
 
     /**
-     * Close log resource
+     * Close a resource
      */
     protected function close()
     {
@@ -54,6 +57,8 @@ class StreamHandler extends AbstractHandler
     }
 
     /**
+     * Write a log message.
+     *
      * @param string $log
      * @return bool
      * @throws \Exception
