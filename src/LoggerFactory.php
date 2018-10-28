@@ -71,7 +71,7 @@ class LoggerFactory
      * @return Channel
      * @throws \InvalidArgumentException
      */
-    protected static function getChannel(array $config = []): Channel
+    public static function getChannel(array $config = []): Channel
     {
         $channel = new Channel();
         $channel->setHandler(static::getHandler($config['handler'] ?? []));

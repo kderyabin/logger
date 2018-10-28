@@ -15,7 +15,7 @@ class TestHandler extends AbstractHandler
 {
     public $log = '';
 
-    public function handle(string $log)
+    public function handle(string $level, string $log): bool
     {
         $this->log= $log;
         return !empty($log);

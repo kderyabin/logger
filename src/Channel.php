@@ -25,17 +25,23 @@ class Channel
      * @var AbstractFormatter
      */
     protected $formatter;
+    /**
+     * Delivered log status
+     * @var bool
+     */
+    protected $isDelivered  = false;
 
     /**
-     * Delivers a log data to the destination (handler)
+     * Delivers a log data to some destination (handler).
+     *
+     * @param string $level
      * @param array $data
      * @return bool
      */
-    public function deliver(array $data)
+    public function deliver(string $level, array $data): bool
     {
-        return $this->handler->handle(
-            $this->formatter->format($data)
-        );
+        $this->isDelivered = false;
+        return $this->isDelivered = $this->handler->handle($level, $this->formatter->format($data));
     }
 
     /**
@@ -72,5 +78,13 @@ class Channel
     public function getFormatter(): AbstractFormatter
     {
         return $this->formatter;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDelivered(): bool
+    {
+        return $this->isDelivered;
     }
 }

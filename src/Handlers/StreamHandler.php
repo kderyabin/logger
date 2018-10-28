@@ -35,7 +35,7 @@ class StreamHandler extends AbstractHandler
      * Open a log destination.
      * @throws \Exception
      */
-    protected function open()
+    public function open()
     {
         $path = $this->getOption('path', $this->getDefault('path'));
         $this->resource = @fopen($path, 'ab');
@@ -49,7 +49,7 @@ class StreamHandler extends AbstractHandler
     /**
      * Close a resource
      */
-    protected function close()
+    public function close()
     {
         if (is_resource($this->resource)) {
             fclose($this->resource);
@@ -59,11 +59,12 @@ class StreamHandler extends AbstractHandler
     /**
      * Write a log message.
      *
+     * @param string $level
      * @param string $log
      * @return bool
      * @throws \Exception
      */
-    public function handle(string $log)
+    public function handle(string $level, string $log): bool
     {
         if (!is_resource($this->resource)) {
             $this->open();

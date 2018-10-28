@@ -79,7 +79,7 @@ class Logger extends AbstractLogger
         $levelCode = $this->levelCode[$level];
         $data = $this->message->process($levelCode, $level, $message, $context);
         foreach ($this->channels as $channel) {
-            $channel->deliver($data);
+            $channel->deliver($level, $data);
         }
     }
 }

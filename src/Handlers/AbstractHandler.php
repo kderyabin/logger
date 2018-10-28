@@ -19,6 +19,15 @@ abstract class AbstractHandler
     use OptionsTrait;
 
     /**
+     * Handle a log message.
+     *
+     * @param string $level
+     * @param string $log
+     * @return bool
+     */
+    abstract public function handle(string $level, string $log): bool;
+
+    /**
      * AbstractHandler constructor.
      * @param array $options
      */
@@ -26,12 +35,4 @@ abstract class AbstractHandler
     {
         $this->setOptions($options);
     }
-
-    /**
-     * Process a log message.
-     *
-     * @param string $log
-     * @return bool
-     */
-    abstract public function handle(string $log);
 }
