@@ -14,7 +14,7 @@ use Psr\Log\LogLevel;
  * Class SyslogHandler
  * @package Kod\Handlers
  */
-class SyslogHandler extends AbstractHandler
+class SyslogHandler extends AbstractGateHandler
 {
     /**
      * Map Psr logger levels to system levels

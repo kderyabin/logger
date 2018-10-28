@@ -14,7 +14,7 @@ use Kod\OptionsTrait;
  * Class StreamHandler
  * @package Kod\Handlers
  */
-class StreamHandler extends AbstractHandler
+class StreamHandler extends AbstractGateHandler
 {
     protected $default = [
         'path' => 'php://stderr'
@@ -33,23 +33,24 @@ class StreamHandler extends AbstractHandler
 
     /**
      * Open a log destination.
-     * @throws \Exception
+     * @return bool
      */
-    public function open()
+    public function open(): bool
     {
-        $path = $this->getOption('path', $this->getDefault('path'));
-        $this->resource = @fopen($path, 'ab');
-        if (!is_resource($this->resource)) {
-            throw new \Exception(
-                sprintf('Failed to open a resource at "%s"', $path)
-            );
+        $path = $this->getOptionOrDefault('path');
+        if (is_resource($path)) {
+            $this->resource = $path;
+            return true;
         }
+        $this->resource = @fopen($path, 'ab');
+
+        return is_resource($this->resource);
     }
 
     /**
      * Close a resource
      */
-    public function close()
+    public function close(): void
     {
         if (is_resource($this->resource)) {
             fclose($this->resource);
@@ -67,7 +68,12 @@ class StreamHandler extends AbstractHandler
     public function handle(string $level, string $log): bool
     {
         if (!is_resource($this->resource)) {
-            $this->open();
+            $status = $this->open();
+            if (!$status) {
+                throw new \Exception(
+                    sprintf('Failed to open a resource "%s"', $this->getOptionOrDefault('path'))
+                );
+            }
         }
         return fwrite($this->resource, $log) !== false;
     }
