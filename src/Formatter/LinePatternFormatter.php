@@ -33,7 +33,7 @@ class LinePatternFormatter extends TextFormatter
             }
             $result = str_replace('%' . $key . '%', $this->stringify($value), $result);
         }
-        $result = $this->removeEndLines($result) . $this->getOption('end_of_log', $this->getDefault('end_of_log'));
+        $result = $this->removeEndLines($result) . $this->getOptionOrDefault('end_of_log');
 
         return $result;
     }

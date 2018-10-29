@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
   bootstrap="bootstrap.php"
-  colors="true">
+  colors="true"
+  convertErrorsToExceptions="false"
+  convertNoticesToExceptions="false"
+  convertWarningsToExceptions="false">
+  <php>
+    <ini name="date.timezone" value="Europe/Paris"/>
+  </php>
   <testsuites>
     <testsuite name="Logger Tests">
       <directory suffix="Test.php">./lib/</directory>
