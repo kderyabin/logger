@@ -8,8 +8,8 @@
 
 namespace Kod;
 
-use Kod\Formatter\AbstractFormatter;
-use Kod\Formatter\JsonFormatter;
+use Kod\Formatters\AbstractFormatter;
+use Kod\Formatters\JsonFormatter;
 use Kod\Handlers\AbstractHandler;
 use Kod\Handlers\StreamHandler;
 use Psr\Log\LogLevel;

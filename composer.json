@@ -31,7 +31,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Kod\\Tests\\": "tests/lib"
+      "Kod\\Tests\\": "tests/src"
     }
   },
   "scripts": {
@@ -46,7 +46,7 @@
       "env ./bin/phpcbf --encoding=utf-8 --standard=ruleset.xml  -n --runtime-set ignore_warnings_on_exit 1 --ignore=src/lib/vendor/ src"
     ],
     "tu": [
-      "env ./bin/phpunit --testdox -v -c tests/phpunit.xml"
+      "env ./bin/phpunit --testdox  -v -c tests/phpunit.xml"
     ],
     "tu-cover": [
       "env ./bin/phpunit --testdox -v -c tests/phpunit-cover.xml"

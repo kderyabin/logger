@@ -9,7 +9,7 @@
 namespace Kod\Tests\Handlers;
 
 use Kod\Channel;
-use Kod\Formatter\LinePatternFormatter;
+use Kod\Formatters\LinePatternFormatter;
 use Kod\Handlers\PhpErrorHandler;
 use Kod\Logger;
 use PHPUnit\Framework\TestCase;

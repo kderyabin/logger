@@ -9,10 +9,10 @@
 namespace Kod\Tests;
 
 use Kod\Channel;
-use Kod\Formatter\TextFormatter;
+use Kod\Formatters\TextFormatter;
 use Kod\Logger;
 use Kod\Message;
-use Kod\Formatter\JsonFormatter;
+use Kod\Formatters\JsonFormatter;
 use Kod\Handlers\StreamHandler;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;

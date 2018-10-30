@@ -6,13 +6,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Kod\Formatter;
+namespace Kod\Formatters;
 
 use Kod\OptionsTrait;
 
 /**
  * Class AbstractFormatter
- * @package Kod\Formatter
+ * @package Kod\Formatters
  */
 abstract class AbstractFormatter
 {

@@ -6,11 +6,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Kod\Formatter;
+namespace Kod\Formatters;
 
 /**
  * Class TextFormatter
- * @package Kod\Formatter
+ * @package Kod\Formatters
  */
 class TextFormatter extends AbstractFormatter
 {
@@ -19,9 +19,9 @@ class TextFormatter extends AbstractFormatter
         // added after each fields/value
         'separator' => PHP_EOL,
         // appended before the log
-        'start_of_log' => PHP_EOL . '---------------------' . PHP_EOL,
+        'start_of_log' => '',
         // appended after the log
-        'end_of_log' => PHP_EOL . '---------------------' . PHP_EOL,
+        'end_of_log' => PHP_EOL ,
     ];
 
     /**

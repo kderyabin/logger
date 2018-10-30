@@ -37,18 +37,6 @@ trait OptionsTrait
     }
 
     /**
-     * Get an option value by name or return some arbitrary value.
-     *
-     * @param string $name
-     * @param mixed $default
-     * @return mixed
-     */
-    public function getOption($name, $default = null)
-    {
-        return isset($this->options[$name]) ? $this->options[$name] : $default;
-    }
-
-    /**
      * Get a default option value by name.
      *
      * @param string $name

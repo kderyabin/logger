@@ -9,7 +9,7 @@
 namespace Kod\Tests\Handlers;
 
 use Kod\Channel;
-use Kod\Formatter\JsonFormatter;
+use Kod\Formatters\JsonFormatter;
 use Kod\Handlers\StreamHandler;
 use Kod\Logger;
 use Kod\LoggerFactory;

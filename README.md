@@ -50,7 +50,7 @@ return [
                 ],
             ],
             'formatter' => [
-                'instance' => \Kod\Formatter\JsonFormatter::class,
+                'instance' => \Kod\Formatters\JsonFormatter::class,
                 'options' => [
                     'json_encode' => \JSON_ERROR_NONE | \JSON_UNESCAPED_SLASHES | \JSON_PRETTY_PRINT
                 ]

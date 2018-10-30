@@ -7,7 +7,7 @@
   convertWarningsToExceptions="false">
   <testsuites>
     <testsuite name="Logger Tests">
-      <directory suffix="Test.php">./lib/</directory>
+      <directory suffix="Test.php">./src/</directory>
     </testsuite>
   </testsuites>
   <filter>

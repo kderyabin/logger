@@ -8,7 +8,7 @@
 
 namespace Kod;
 
-use Kod\Formatter\AbstractFormatter;
+use Kod\Formatters\AbstractFormatter;
 use Kod\Handlers\AbstractHandler;
 
 /**

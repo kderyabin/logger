@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Kod\Formatter;
+namespace Kod\Formatters;
 
 /**
  * Class TextFormatter

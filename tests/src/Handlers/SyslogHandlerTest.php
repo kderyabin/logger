@@ -9,8 +9,8 @@
 namespace Kod\Tests\Handlers;
 
 use Kod\Channel;
-use Kod\Formatter\JsonFormatter;
-use Kod\Formatter\LinePatternFormatter;
+use Kod\Formatters\JsonFormatter;
+use Kod\Formatters\LinePatternFormatter;
 use Kod\Handlers\SyslogHandler;
 use Kod\Logger;
 use Kod\LoggerFactory;
