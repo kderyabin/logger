@@ -5,9 +5,6 @@
   convertErrorsToExceptions="false"
   convertNoticesToExceptions="false"
   convertWarningsToExceptions="false">
-  <php>
-    <ini name="date.timezone" value="Europe/Paris"/>
-  </php>
   <testsuites>
     <testsuite name="Logger Tests">
       <directory suffix="Test.php">./lib/</directory>
