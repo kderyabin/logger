@@ -155,9 +155,10 @@ class Message
      */
     public function setDateFields($data)
     {
+        $dt = Date::getDateTime();
         foreach ($this->dates as $field => $format) {
             if (empty($data[$field]) && !empty($format)) {
-                $data[$field] = Date::getNow($format);
+                $data[$field] = $dt->format($format);
             }
         }
 

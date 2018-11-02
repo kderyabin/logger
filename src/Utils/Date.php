@@ -15,6 +15,19 @@ namespace Kod\Utils;
 class Date
 {
     /**
+     * Returns DateTime object.
+     *
+     * @return \DateTime
+     */
+    public static function getDateTime()
+    {
+        $dt = \DateTime::createFromFormat('U.u', microtime(true));
+        $dt->setTimezone(new \DateTimeZone(date('e')));
+
+        return $dt;
+    }
+
+    /**
      * Returns current date in desired format.
      *
      * @param string $format
@@ -22,8 +35,7 @@ class Date
      */
     public static function getNow($format = DATE_RFC3339_EXTENDED)
     {
-        $dt = \DateTime::createFromFormat('U.u', microtime(true));
-        $dt->setTimezone(new \DateTimeZone(date('e')));
+        $dt = static::getDateTime();
         return $dt->format($format);
     }
 }
