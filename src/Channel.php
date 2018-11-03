@@ -17,6 +17,7 @@ use Kod\Handlers\AbstractHandler;
  */
 class Channel
 {
+    use PriorityLevelTrait;
     /**
      * @var AbstractHandler
      */
@@ -32,6 +33,16 @@ class Channel
     protected $isDelivered  = false;
 
     /**
+     *
+     * @param array|\ArrayAccess $config    Channel configuration
+     */
+    public function __construct($config = [])
+    {
+        $this->priorityMin = LoggerFactory::getMinPriority($config);
+        $this->priorityMax = LoggerFactory::getMaxPriority($config);
+    }
+
+    /**
      * Delivers a log data to some destination (handler).
      *
      * @param string $level
@@ -41,6 +52,9 @@ class Channel
     public function deliver(string $level, array $data): bool
     {
         $this->isDelivered = false;
+        if (!$this->canLog($level)) {
+            return $this->isDelivered;
+        }
         return $this->isDelivered = $this->handler->handle($level, $this->formatter->format($data));
     }
 

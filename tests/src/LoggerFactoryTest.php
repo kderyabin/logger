@@ -99,13 +99,13 @@ class LoggerFactoryTest extends TestCase
             LogLevel::DEBUG => 0,
         ];
         try {
-            LoggerFactory::getMinPriority( $levelPriority, ['levelPriorityMin' => 'mylevel'] );
+            LoggerFactory::getMinPriority( ['levelPriorityMin' => 'mylevel'] );
             $this->fail('levelPriorityMin: should throw an InvalidArgumentException ');
         } catch (\Throwable $error) {
             $this->assertTrue($error instanceof \InvalidArgumentException);
         }
         try {
-            LoggerFactory::getMaxPriority( $levelPriority, ['levelPriorityMax' => 'mylevel']);
+            LoggerFactory::getMaxPriority( ['levelPriorityMax' => 'mylevel']);
             $this->fail('levelPriorityMinx: should throw an InvalidArgumentException');
         } catch (\Throwable $error) {
             $this->assertTrue($error instanceof \InvalidArgumentException);

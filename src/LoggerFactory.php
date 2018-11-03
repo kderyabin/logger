@@ -141,19 +141,18 @@ class LoggerFactory
      * @see LogLevel
      * @example 'levelPriorityMin' => 'info'
      *
-     * @param array $priorities             Array containing a log level with its integer value
      * @param array|\ArrayAccess $config    Logger configuration
      * @return int|null
      */
-    public static function getMinPriority(array $priorities, $config = [])
+    public static function getMinPriority($config = [])
     {
         if (!empty($config['levelPriorityMin'])) {
-            if (!isset($priorities[$config['levelPriorityMin']])) {
+            if (!LogLevelPriority::isDefined($config['levelPriorityMin'])) {
                 throw new \InvalidArgumentException(
                     sprintf('levelPriorityMin "%s" is not declared in level priorities', $config['levelPriorityMin'])
                 );
             }
-            return $priorities[$config['levelPriorityMin']];
+            return LogLevelPriority::getValue($config['levelPriorityMin']);
         }
         return null;
     }
@@ -165,19 +164,18 @@ class LoggerFactory
      * @see LogLevel
      * @example 'levelPriorityMax' => 'notice'
      *
-     * @param array $priorities             Array containing a log level with its integer value
      * @param array|\ArrayAccess $config    Logger configuration
      * @return int|null
      */
-    public static function getMaxPriority(array $priorities, $config = [])
+    public static function getMaxPriority($config = [])
     {
         if (!empty($config['levelPriorityMax'])) {
-            if (!isset($priorities[$config['levelPriorityMax']])) {
+            if (!LogLevelPriority::isDefined($config['levelPriorityMax'])) {
                 throw new \InvalidArgumentException(
                     sprintf('levelPriorityMax "%s" is not declared in level priorities', $config['levelPriorityMax'])
                 );
             }
-            return $priorities[$config['levelPriorityMax']];
+            return LogLevelPriority::getValue($config['levelPriorityMax']);
         }
         return null;
     }

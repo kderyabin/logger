@@ -16,25 +16,27 @@ trait PriorityLevelTrait
 {
     /**
      * Minimal log level
-     * @var int
+     * @var ?int
      */
     protected $priorityMin;
     /**
      * Maximal log level
-     * @var int
+     * @var ?int
      */
     protected $priorityMax;
 
     /**
-     * @param int $priority
+     * @param string $level
      * @return bool
      */
-    public function canLog(int $priority)
+    public function canLog(string $level)
     {
         // level filter is not set -> we can log
         if ($this->priorityMin === null && $this->priorityMax === null) {
             return true;
-        } elseif ($this->priorityMax !== null && $this->priorityMin !== null) {
+        }
+        $priority = LogLevelPriority::getValue($level);
+        if ($this->priorityMax !== null && $this->priorityMin !== null) {
             return $priority >= $this->priorityMin && $priority <= $this->priorityMax;
         } elseif ($this->priorityMax === null) {
             return $priority >= $this->priorityMin;

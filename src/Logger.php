@@ -40,28 +40,18 @@ class Logger extends AbstractLogger
         LogLevel::INFO => LOG_INFO,
         LogLevel::DEBUG => LOG_DEBUG,
     ];
-    /**
-     * Log level to log priority mapping.
-     * Used internally.
-     */
-    protected $levelPriority = [
-        LogLevel::EMERGENCY => 7,
-        LogLevel::ALERT => 6,
-        LogLevel::CRITICAL => 5,
-        LogLevel::ERROR => 4,
-        LogLevel::WARNING => 3,
-        LogLevel::NOTICE => 2,
-        LogLevel::INFO => 1,
-        LogLevel::DEBUG => 0,
-    ];
 
+    /**
+     * Logger constructor.
+     * @param array $config
+     */
     public function __construct($config = [])
     {
         $this->levelCode = LoggerFactory::getLevelCodeMapping($config, $this->levelCode);
         $this->message = LoggerFactory::getMessage($config);
         $this->channels = LoggerFactory::getChannels($config);
-        $this->priorityMin = LoggerFactory::getMinPriority($this->levelPriority, $config);
-        $this->priorityMax = LoggerFactory::getMaxPriority($this->levelPriority, $config);
+        $this->priorityMin = LoggerFactory::getMinPriority($config);
+        $this->priorityMax = LoggerFactory::getMaxPriority($config);
     }
     /**
      * Logs with an arbitrary level.
@@ -73,7 +63,7 @@ class Logger extends AbstractLogger
      */
     public function log($level, $message, array $context = array())
     {
-        if (!$this->canLog($this->levelPriority[$level])) {
+        if (!$this->canLog($level)) {
             return;
         }
         $levelCode = $this->levelCode[$level];

@@ -38,8 +38,8 @@ class LoggerTest extends TestCase
         $this->assertContains($message, $handler->log);
     }
     /**
-     * @testdox Should apply min priority bound
-     */
+ * @testdox Should apply min priority bound
+ */
     public function testMinPriorityBound()
     {
         $channel = new Channel();
@@ -107,5 +107,29 @@ class LoggerTest extends TestCase
 
         $logger->warning($msg);
         $this->assertNotEmpty($handler->log);
+    }
+
+    /**
+     * @testdox Should log with DEBUG level some custom level
+     */
+    public function testUndefinedLevel()
+    {
+        $channel = new Channel();
+        $handler = new TestHandler();
+        $channel->setHandler($handler)->setFormatter(new JsonFormatter());
+        $msg = 'Log message';
+        $logger = new Logger([
+            'levelCode' => [
+                'xyz' => 10000
+            ],
+            'levelPriorityMin' => LogLevel::INFO,
+            'channels' => [$channel],
+        ]);
+
+        $msg = 'Log message';
+
+        $logger->log('xyz', $msg);
+        $this->assertEmpty($handler->log);
+        $this->assertFalse($channel->isDelivered());
     }
 }
