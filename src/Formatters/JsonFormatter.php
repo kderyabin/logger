@@ -19,8 +19,8 @@ class JsonFormatter extends AbstractFormatter
      * @var array
      */
     protected $default = [
-        'json_encode' => \JSON_ERROR_NONE | \JSON_UNESCAPED_SLASHES | \JSON_PRETTY_PRINT,
-        'end_of_log' => PHP_EOL,
+        'encodeOptions' => \JSON_ERROR_NONE | \JSON_UNESCAPED_SLASHES | \JSON_PRETTY_PRINT,
+        'endLog' => PHP_EOL,
     ];
 
     /**
@@ -30,6 +30,6 @@ class JsonFormatter extends AbstractFormatter
      */
     public function format(array $data)
     {
-        return json_encode($data, $this->getOptionOrDefault('json_encode')) . $this->getOptionOrDefault('end_of_log');
+        return json_encode($data, $this->getOptionOrDefault('encodeOptions')) . $this->getOptionOrDefault('endLog');
     }
 }

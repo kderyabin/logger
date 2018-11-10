@@ -19,7 +19,7 @@ class LinePatternFormatter extends TextFormatter
     protected $default = [
         // Formatting pattern.
         'format' => '{datetime} {level}({level_code}): {message}',
-        'end_of_log' => PHP_EOL,
+        'endLog' => PHP_EOL,
     ];
 
     /**
@@ -30,7 +30,7 @@ class LinePatternFormatter extends TextFormatter
     {
         $format = $this->getOptionOrDefault('format');
         $result = Stringer::interpolate($format, $data);
-        $result = Stringer::removeEndLines($result) . $this->getOptionOrDefault('end_of_log');
+        $result = Stringer::removeEndLines($result) . $this->getOptionOrDefault('endLog');
 
         return $result;
     }

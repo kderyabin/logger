@@ -17,13 +17,13 @@ use Kod\Utils\Stringer;
 class TextFormatter extends AbstractFormatter
 {
     protected $default = [
-        'allow_line_breaks' => true,
+        'allowLineBreaks' => true,
         // added after each fields/value
         'separator' => PHP_EOL,
         // appended before the log
-        'start_of_log' => '',
+        'startLog' => '',
         // appended after the log
-        'end_of_log' => PHP_EOL ,
+        'endLog' => PHP_EOL ,
     ];
 
     /**
@@ -38,13 +38,13 @@ class TextFormatter extends AbstractFormatter
             $content[] = sprintf("[%s]: %s", $key, Stringer::stringify($value));
         }
         $result = implode($separator, $content);
-        if (!$this->getOptionOrDefault('allow_line_breaks')) {
+        if (!$this->getOptionOrDefault('allowLineBreaks')) {
             $result = Stringer::removeEndLines($result);
         }
         $result =
-            $this->getOptionOrDefault('start_of_log')
+            $this->getOptionOrDefault('startLog')
             . $result
-            . $this->getOptionOrDefault('end_of_log');
+            . $this->getOptionOrDefault('endLog');
 
         return $result;
     }

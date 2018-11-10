@@ -30,7 +30,7 @@ class LinePatternFormatterTest extends TestCase
                     ],
                     'formatter' => [
                         'instance' => LinePatternFormatter::class,
-                        'end_of_log' => $endOfLog,
+                        'endLog' => $endOfLog,
                     ]
                 ]
             ]

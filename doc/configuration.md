@@ -252,9 +252,9 @@ $log = new Logger([
             'handler' => [
                 'instance' => SyslogHandler::class,
                 // SyslogHandler options: see SyslogHandler class for available options
-                'sys_ident' => 'frontend',
-                'sys_option' => LOG_ODELAY | LOG_PID,
-                'sys_facility' => LOG_USER
+                'sysIdent' => 'frontend',
+                'sysOptions' => LOG_ODELAY | LOG_PID,
+                'sysFacility' => LOG_USER
             ],
             'formatter' => [
                 'instance' => LinePatternFormatter::class,

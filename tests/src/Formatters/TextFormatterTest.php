@@ -31,10 +31,10 @@ class TextFormatterTest extends TestCase
                     ],
                     'formatter' => [
                         'instance' => TextFormatter::class,
-                        'allow_line_breaks' => false,
+                        'allowLineBreaks' => false,
                         'separator' => '|',
-                        'start_of_log' => '',
-                        'end_of_log' => $endOfLog,
+                        'startLog' => '',
+                        'endLog' => $endOfLog,
                     ]
                 ]
             ]

@@ -54,7 +54,7 @@ class PhpIniHandlerTest extends TestCase
     {
         $channel = new Channel();
         $channel->setHandler(new PhpIniHandler())
-            ->setFormatter(new LinePatternFormatter(['end_of_log' => '']));
+            ->setFormatter(new LinePatternFormatter(['endLog' => '']));
         $logger = new Logger([
             'channels' => [$channel]
         ]);

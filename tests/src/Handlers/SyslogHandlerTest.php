@@ -26,13 +26,13 @@ class SyslogHandlerTest extends TestCase
         $channel = LoggerFactory::getChannel( [
             'handler' => [
                 'instance' => SyslogHandler::class,
-                'sys_ident' => 'phpunit',
-                'sys_option' => LOG_ODELAY,
-                'sys_facility' => LOG_USER,
+                'sysIdent' => 'phpunit',
+                'sysOptions' => LOG_ODELAY,
+                'sysFacility' => LOG_USER,
             ],
             'formatter' => [
                 'instance' => JsonFormatter::class,
-                'json_encode' => \JSON_ERROR_NONE,
+                'encodeOptions' => \JSON_ERROR_NONE,
             ]
         ]);
         $logger = new Logger([

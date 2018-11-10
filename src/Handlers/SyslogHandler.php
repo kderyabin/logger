@@ -36,13 +36,13 @@ class SyslogHandler extends AbstractGateHandler
      * @see openlog() for configuration
      */
     protected $default = [
-        // the string 'sys_ident' is added to each message
-        'sys_ident' => '',
-        // 'sys_option' argument is used to indicate what logging options
+        // the string 'sysIdent' is added to each message
+        'sysIdent' => '',
+        // 'sysOptions' argument is used to indicate what logging options
         // will be used when generating a log message.
-        'sys_option' => LOG_ODELAY | LOG_PID,
-        // 'sys_facility' argument is used to specify what type of program is logging the message
-        'sys_facility' => LOG_USER
+        'sysOptions' => LOG_ODELAY | LOG_PID,
+        // 'sysFacility' argument is used to specify what type of program is logging the message
+        'sysFacility' => LOG_USER
     ];
 
     /**
@@ -53,9 +53,9 @@ class SyslogHandler extends AbstractGateHandler
     public function open(): bool
     {
         return openlog(
-            $this->getOptionOrDefault('sys_ident'),
-            $this->getOptionOrDefault('sys_option'),
-            $this->getOptionOrDefault('sys_facility')
+            $this->getOptionOrDefault('sysIdent'),
+            $this->getOptionOrDefault('sysOptions'),
+            $this->getOptionOrDefault('sysFacility')
         );
     }
 
