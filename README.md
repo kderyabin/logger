@@ -1,5 +1,9 @@
-# PSR 3 Logger
-Lightweight and extremely customizable logger implementing the [PSR-3](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md) standard.
+# PSR 3 Logger 
+
+[![Build Status](https://travis-ci.org/kderyabin/logger.svg?branch=master)](https://travis-ci.org/kderyabin/logger)
+
+Lightweight and easy customizable logger implementation of the [PSR-3](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md) standard.
+
 
 ## Requirements
 Logger works with PHP >=7.1.
