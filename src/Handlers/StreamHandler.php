@@ -17,7 +17,10 @@ use Kod\OptionsTrait;
 class StreamHandler extends AbstractGateHandler
 {
     protected $default = [
-        'path' => 'php://stderr'
+        // logs destination
+        'path' => 'php://stderr',
+        // resource created with stream_context_create() function
+        'context' => null,
     ];
     /**
      * Resource where logs will be written.
@@ -42,7 +45,13 @@ class StreamHandler extends AbstractGateHandler
             $this->resource = $path;
             return true;
         }
-        $this->resource = @fopen($path, 'ab');
+
+        $context = $this->getOptionOrDefault('context');
+        if(is_resource($context)){
+            $this->resource = @fopen($path, 'ab', false, $context);
+        } else {
+            $this->resource = @fopen($path, 'ab');
+        }
 
         return is_resource($this->resource);
     }

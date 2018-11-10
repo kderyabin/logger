@@ -14,7 +14,7 @@ namespace Kod\Handlers;
  */
 class OutputHandler extends StreamHandler
 {
-    protected $default = [
+    protected $options = [
         'path' => 'php://output'
     ];
 }

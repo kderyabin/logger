@@ -14,7 +14,7 @@ namespace Kod\Handlers;
  */
 class StdoutHandler extends StreamHandler
 {
-    protected $default = [
+    protected $options = [
         'path' => 'php://stdout'
     ];
 }
