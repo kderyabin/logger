@@ -175,7 +175,7 @@ $logger = new Logger([
              'handler' => [
                     'instance' => SyslogHandler::class,
                     'sysIdent' => 'backend',
-                    'sysOption' => LOG_ODELAY | LOG_PID,
+                    'sysOptions' => LOG_ODELAY | LOG_PID,
                     'sysFacility' => LOG_USER
                 ],
                 'formatter' => [
