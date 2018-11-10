@@ -52,3 +52,5 @@ By default they are set to php log levels constants. Surprisingly, those constan
 |LOG_DEBUG      |7      |6      |Debug: debug-level messages                  
 
 You can reset default codes by defining your custom codes with the `levelCode` keyword in the configuration.
+
+Next: [Settings](./configuration.md)
