@@ -95,13 +95,17 @@ class Message
      */
     protected function getData($code, $level, $message, $context = [])
     {
-        if(!is_string($message)){
+        if (!is_string($message)) {
             $message = Stringer::stringify($message);
         }
-        if(isset($context['exception']) && $context['exception'] instanceof \Throwable) {
+        if (isset($context['exception']) && $context['exception'] instanceof \Throwable) {
             $context['exception'] =  Stringer::stringify($context['exception']);
         }
-        return array_merge($this->fields, $context, ['message' => (string)$message, 'level' => $level, 'level_code' => $code]);
+        return array_merge(
+            $this->fields,
+            $context,
+            ['message' => (string)$message, 'level' => $level, 'level_code' => $code]
+        );
     }
 
     /**

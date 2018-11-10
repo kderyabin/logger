@@ -47,7 +47,7 @@ class StreamHandler extends AbstractGateHandler
         }
 
         $context = $this->getOptionOrDefault('context');
-        if(is_resource($context)){
+        if (is_resource($context)) {
             $this->resource = @fopen($path, 'ab', false, $context);
         } else {
             $this->resource = @fopen($path, 'ab');

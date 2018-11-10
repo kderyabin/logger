@@ -8,7 +8,6 @@
 
 namespace Kod\Utils;
 
-
 class Stringer
 {
     /**
@@ -19,7 +18,7 @@ class Stringer
      */
     public static function stringify($value)
     {
-        if(is_string($value)){
+        if (is_string($value)) {
             return $value;
         }
         if ($value === null || is_bool($value)) {
