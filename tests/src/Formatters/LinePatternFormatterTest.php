@@ -47,7 +47,6 @@ class LinePatternFormatterTest extends TestCase
 
         $this->assertNotContains('error', $log);
         $this->assertNotContains('args', $log);
-        $this->assertNotContains('%', $log);
         $this->assertContains($endOfLog, $log);
         $this->assertRegExp('@[^\s]+ \w+\(\d+\): .+@', $log);
     }

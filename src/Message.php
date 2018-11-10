@@ -9,6 +9,7 @@
 namespace Kod;
 
 use Kod\Utils\Date;
+use Kod\Utils\Stringer;
 
 /**
  * Class Message
@@ -94,13 +95,19 @@ class Message
      */
     protected function getData($code, $level, $message, $context = [])
     {
-        return array_merge($this->fields, $context, ['message' => $message, 'level' => $level, 'level_code' => $code]);
+        if(!is_string($message)){
+            $message = Stringer::stringify($message);
+        }
+        if(isset($context['exception']) && $context['exception'] instanceof \Throwable) {
+            $context['exception'] =  Stringer::stringify($context['exception']);
+        }
+        return array_merge($this->fields, $context, ['message' => (string)$message, 'level' => $level, 'level_code' => $code]);
     }
 
     /**
      * @param int $code
      * @param string $level
-     * @param string $message
+     * @param mixed $message
      * @param array $context
      * @return array
      */

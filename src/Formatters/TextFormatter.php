@@ -8,6 +8,8 @@
 
 namespace Kod\Formatters;
 
+use Kod\Utils\Stringer;
+
 /**
  * Class TextFormatter
  * @package Kod\Formatters
@@ -33,11 +35,11 @@ class TextFormatter extends AbstractFormatter
         $separator = $this->getOptionOrDefault('separator');
         $content = [];
         foreach ($data as $key => $value) {
-            $content[] = sprintf("[%s]: %s", $key, $this->stringify($value));
+            $content[] = sprintf("[%s]: %s", $key, Stringer::stringify($value));
         }
         $result = implode($separator, $content);
         if (!$this->getOptionOrDefault('allow_line_breaks')) {
-            $result = $this->removeEndLines($result);
+            $result = Stringer::removeEndLines($result);
         }
         $result =
             $this->getOptionOrDefault('start_of_log')
@@ -45,32 +47,5 @@ class TextFormatter extends AbstractFormatter
             . $this->getOptionOrDefault('end_of_log');
 
         return $result;
-    }
-
-    /**
-     * Converts a value into a string.
-     *
-     * @param mixed $value
-     * @return string
-     */
-    public function stringify($value)
-    {
-        if ($value === null || is_bool($value)) {
-            return var_export($value, true);
-        }
-
-        if (is_array($value) || (is_object($value) && !method_exists($value, '__toString'))) {
-            return json_encode($value);
-        }
-        return (string)$value;
-    }
-
-    /**
-     * @param string $message
-     * @return string
-     */
-    public function removeEndLines(string $message)
-    {
-        return str_replace(["\r\n", "\r", "\n"], ' ', $message);
     }
 }

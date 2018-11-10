@@ -70,4 +70,34 @@ class MessageTest extends TestCase
         // check setters are applied
         $this->assertEquals(md5($login), $fields['login']);
     }
+
+    /**
+     * @testdox Should handle a non string message
+     */
+    public function testNonStringMessage()
+    {
+        $message = new Message();
+        $data = ['key' => 'value'];
+        $fields = $message->process(LOG_DEBUG, LogLevel::DEBUG, $data);
+
+        $this->assertContains('key', $fields['message']);
+        $this->assertContains('value', $fields['message']);
+    }
+    /**
+     * @testdox Should handle an exception key in context
+     */
+    public function testExceptionContext()
+    {
+        $message = new Message();
+
+        $exception = new \Exception('My exception');
+        $data = ['key' => 'value'];
+        $fields = $message->process(LOG_DEBUG, LogLevel::DEBUG, $data, [
+            'exception' => $exception,
+        ]);
+
+        $this->assertEquals((string)$exception, $fields['exception']);
+        $this->assertContains('key', $fields['message']);
+        $this->assertContains('value', $fields['message']);
+    }
 }

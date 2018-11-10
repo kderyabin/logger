@@ -26,8 +26,10 @@ class PhpIniHandlerTest extends TestCase
     {
         static::$previousLogSetting = ini_get('error_log');
         $tmpDir = TEST_DIR . '/var';
-        if(!is_dir(TEST_DIR. '/var')){
-            mkdir($tmpDir);
+        if(!is_dir($tmpDir)){
+            if(!mkdir($tmpDir)){
+                static::markTestSkipped('Skipped cause failed to create a temporary directory: '. $tmpDir);
+            }
         }
         if(!is_file(static::$logFile)) {
             touch(static::$logFile);
