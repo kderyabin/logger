@@ -9,14 +9,14 @@
 namespace Kod\Handlers;
 
 /**
- * Class PhpErrorHandler is a wrapper for error_log() function.
+ * Class PhpIniHandler is a wrapper for error_log() function.
  * Sends a message to the web server's error log or to a file according to php settings.
  *
  * @package Kod\Handlers
  * @see http://php.net/manual/function.error-log.php
  * @see http://php.net/manual/errorfunc.configuration.php#ini.error-log
  */
-class PhpErrorHandler extends AbstractHandler
+class PhpIniHandler extends AbstractHandler
 {
     /**
      * @param string $level

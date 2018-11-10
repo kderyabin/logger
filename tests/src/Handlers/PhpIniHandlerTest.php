@@ -10,11 +10,11 @@ namespace Kod\Tests\Handlers;
 
 use Kod\Channel;
 use Kod\Formatters\LinePatternFormatter;
-use Kod\Handlers\PhpErrorHandler;
+use Kod\Handlers\PhpIniHandler;
 use Kod\Logger;
 use PHPUnit\Framework\TestCase;
 
-class PhpErrorHandlerTest extends TestCase
+class PhpIniHandlerTest extends TestCase
 {
     protected static $logFile = TEST_DIR . '/var/php_error_handler.log';
     protected static $previousLogSetting = '';
@@ -51,12 +51,12 @@ class PhpErrorHandlerTest extends TestCase
     public function testWriteWithPhpErrorHandler()
     {
         $channel = new Channel();
-        $channel->setHandler(new PhpErrorHandler())
+        $channel->setHandler(new PhpIniHandler())
             ->setFormatter(new LinePatternFormatter(['end_of_log' => '']));
         $logger = new Logger([
             'channels' => [$channel]
         ]);
-        $msg = 'PhpErrorHandler message';
+        $msg = 'PhpIniHandler message';
         $logger->critical($msg);
         $content = file_get_contents(static::$logFile);
 
