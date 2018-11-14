@@ -8,6 +8,8 @@
 
 namespace Kod;
 
+use Kod\Traits\EnabledTrait;
+use Kod\Traits\PriorityLevelTrait;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 
@@ -17,7 +19,13 @@ use Psr\Log\LogLevel;
  */
 class Logger extends AbstractLogger
 {
-    use PriorityLevelTrait;
+    use PriorityLevelTrait {
+        canLog as protected;
+    }
+    use EnabledTrait {
+        isEnabled as protected;
+        setEnabled as protected;
+    }
     /**
      * @var Message
      */
@@ -52,7 +60,9 @@ class Logger extends AbstractLogger
         $this->channels = LoggerFactory::getChannels($config);
         $this->priorityMin = LoggerFactory::getMinPriority($config);
         $this->priorityMax = LoggerFactory::getMaxPriority($config);
+        $this->setEnabled(LoggerFactory::getEnableStatus($config));
     }
+
     /**
      * Logs with an arbitrary level.
      *
@@ -63,9 +73,10 @@ class Logger extends AbstractLogger
      */
     public function log($level, $message, array $context = array())
     {
-        if (!$this->canLog($level)) {
+        if (!$this->isEnabled() || !$this->canLog($level)) {
             return;
         }
+
         $levelCode = $this->levelCode[$level];
         $data = $this->message->process($levelCode, $level, $message, $context);
         foreach ($this->channels as $channel) {

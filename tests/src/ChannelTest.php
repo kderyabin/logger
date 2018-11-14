@@ -10,7 +10,7 @@ namespace Kod\Tests;
 
 use Kod\Channel;
 use Kod\Formatters\JsonFormatter;
-use Kod\Logger;
+use Kod\LoggerFactory;
 use Kod\Tests\Mocks\TestHandler;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
@@ -71,6 +71,7 @@ class ChannelTest extends TestCase
             'levelPriorityMax' => LogLevel::ERROR,
             'levelPriorityMin' => LogLevel::INFO,
         ]);
+
         $handler = new TestHandler();
         $channel->setHandler($handler)->setFormatter(new JsonFormatter());
         $data = ['message' => 'hello'];
@@ -97,5 +98,16 @@ class ChannelTest extends TestCase
         $this->assertNotEmpty($handler->log);
     }
 
+    /**
+     * @testdox Should not deliver if disabled
+     */
+    public function testDisabled()
+    {
+        $channel = LoggerFactory::getChannel([
+            'enabled' => false
+        ]);
+
+        $this->assertFalse($channel->deliver(LOG_ERR, ['message' => 'Log it']));
+    }
 
 }

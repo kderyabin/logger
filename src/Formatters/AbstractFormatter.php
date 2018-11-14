@@ -8,7 +8,7 @@
 
 namespace Kod\Formatters;
 
-use Kod\OptionsTrait;
+use Kod\Traits\OptionsTrait;
 
 /**
  * Class AbstractFormatter

@@ -20,4 +20,9 @@ class TestHandler extends AbstractHandler
         $this->log= $log;
         return !empty($log);
     }
+
+    public function reset()
+    {
+        $this->log = '';
+    }
 }

@@ -8,7 +8,7 @@
 
 namespace Kod\Handlers;
 
-use Kod\OptionsTrait;
+use Kod\Traits\OptionsTrait;
 
 /**
  * Class StreamHandler

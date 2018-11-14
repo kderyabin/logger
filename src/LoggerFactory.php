@@ -74,6 +74,7 @@ class LoggerFactory
     public static function getChannel(array $config = []): Channel
     {
         $channel = new Channel();
+        $channel->setEnabled(LoggerFactory::getEnableStatus($config));
         $channel->setHandler(static::getHandler($config['handler'] ?? []));
         $channel->setFormatter(static::getFormatter($config['formatter'] ?? []));
 
@@ -178,5 +179,17 @@ class LoggerFactory
             return LogLevelPriority::getValue($config['levelPriorityMax']);
         }
         return null;
+    }
+
+    /**
+     * Get 'enabled' keyword  value from the configuration.
+     * Any type different from boolean will result in true value.
+     *
+     * @param array|\ArrayAccess $config
+     * @return bool
+     */
+    public static function getEnableStatus($config = []): bool
+    {
+        return isset($config['enabled']) && is_bool($config['enabled']) ? $config['enabled'] : true;
     }
 }
